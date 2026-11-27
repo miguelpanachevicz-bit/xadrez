@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magiro - Missão Espacial das Equações</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container" id="app-container">
+    <!-- Cabeçalho com placar, vidas e tema -->
+    <header class="cabecalho">
+      <div class="titulo-area">
+        <h1>Magiro</h1>
+        <span class="subtitulo">Descubra o valor de X</span>
+      </div>
+      <div class="status-jogo">
+        <div class="badge" id="indicador-rodada" aria-live="polite">Rodada 1/10</div>
+        <div class="badge" id="indicador-pontos" aria-live="polite">Pontos: 0</div>
+        <div class="badge vidas" id="indicador-vidas" aria-label="Vidas restantes">❤️❤️❤️</div>
+        <button type="button" id="btn-tema" class="btn-icone" title="Alternar tema claro ou escuro" aria-label="Alternar tema claro ou escuro">🌓</button>
+      </div>
+    </header>
+
+    <!-- Tela Inicial -->
+    <section id="tela-inicio" class="tela ativa">
+      <div class="card-central">
+        <h2>Missão: Equações no Espaço</h2>
+        <p>Mova o canhão espacial para alinhar com o asteroide que mostra o valor certo de <strong>X</strong> e dispare o raio de energia!</p>
+        <ul class="lista-regras">
+          <li>10 rodadas com equações que vão ficando mais desafiadoras.</li>
+          <li>Você começa com 3 corações. Acertar o alvo errado tira 1 vida.</li>
+          <li>Use as setas do teclado (◀ ▶) e Espaço, ou os botões na tela.</li>
+        </ul>
+        <button type="button" id="btn-comecar" class="btn-principal">Começar Missão</button>
+      </div>
+    </section>
+
+    <!-- Tela Principal do Jogo -->
+    <section id="tela-jogo" class="tela" hidden>
+      <!-- Painel da equação atual -->
+      <div class="painel-equacao" aria-live="polite">
+        <span class="rotulo-equacao">Resolva a equação:</span>
+        <div id="texto-equacao" class="equacao-destaque">X + 3 = 8</div>
+      </div>
+
+      <!-- Arena espacial -->
+      <div class="arena-espacial" id="arena-espacial">
+        <!-- Linha de 3 alvos (asteroides) -->
+        <div class="linha-alvos" id="linha-alvos">
+          <button type="button" class="alvo" data-coluna="0" aria-label="Alvo da esquerda">
+            <span class="asteroide-visual">🪨</span>
+            <span class="valor-alvo" id="valor-alvo-0">5</span>
+          </button>
+          <button type="button" class="alvo" data-coluna="1" aria-label="Alvo do meio">
+            <span class="asteroide-visual">🪨</span>
+            <span class="valor-alvo" id="valor-alvo-1">3</span>
+          </button>
+          <button type="button" class="alvo" data-coluna="2" aria-label="Alvo da direita">
+            <span class="asteroide-visual">🪨</span>
+            <span class="valor-alvo" id="valor-alvo-2">11</span>
+          </button>
+        </div>
+
+        <!-- Raio de energia animado -->
+        <div id="raio-energia" class="raio-energia" aria-hidden="true"></div>
+
+        <!-- Canhão espacial na base -->
+        <div class="trilho-canhao">
+          <div id="canhao" class="canhao coluna-1" aria-label="Canhão espacial">
+            <div class="torre-canhao"></div>
+            <div class="base-canhao">🚀</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mensagem educativa após cada disparo -->
+      <div id="caixa-feedback" class="caixa-feedback oculto" role="status" aria-live="assertive">
+        <p id="texto-feedback"></p>
+        <button type="button" id="btn-proxima" class="btn-secundario">Próxima Rodada</button>
+      </div>
+
+      <!-- Controles táteis (celular e computador) -->
+      <div class="controles-jogo">
+        <button type="button" id="btn-esquerda" class="btn-controle" aria-label="Mover canhão para a esquerda">◀ Esquerda</button>
+        <button type="button" id="btn-atirar" class="btn-controle btn-disparo" aria-label="Disparar raio de energia">⚡ Atirar</button>
+        <button type="button" id="btn-direita" class="btn-controle" aria-label="Mover canhão para a direita">Direita ▶</button>
+      </div>
+    </section>
+
+    <!-- Tela Final -->
+    <section id="tela-fim" class="tela" hidden>
+      <div class="card-central">
+        <h2 id="titulo-final">Missão Concluída!</h2>
+        <p id="resumo-final" class="texto-destaque"></p>
+        <div class="placar-final-box">
+          <div>Pontuação final: <strong id="pontos-finais">0</strong></div>
+          <div>Acertos: <strong id="acertos-finais">0/10</strong></div>
+        </div>
+        <button type="button" id="btn-jogar-novamente" class="btn-principal">Jogar Novamente</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
